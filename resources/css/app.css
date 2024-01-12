@@ -1,0 +1,254 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: none; /* Remove the default arrow icon */
+    background-color: transparent; /* Optional: make the background transparent */
+}
+
+/* Style the custom dropdown arrow */
+select::after {
+    content: "\25BC"; /* Unicode character for a down arrow or use an SVG icon */
+    position: absolute;
+    top: 50%;
+    right: 10px; /* Adjust the position as needed */
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.custom-card {
+    border: 1px solid #ccc;
+    padding: 16px;
+    width: 600px;
+    min-height: 450px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow-y: auto; /* Enable vertical scrolling if needed */
+    border: 1px solid #ccc;
+    border-radius: 5%;
+}
+
+@media screen and (max-width: 768px) {
+    /* Adjust styles for screens smaller than 768px (for mobile view) */
+    .custom-card {
+        width: 350px;
+        height: auto;
+        margin-top: 50px;
+    }
+}
+
+.mobile-resize {
+    width: "1000px";
+    height: "400px";
+}
+
+/* For larger screens */
+@media (min-width: 768px) {
+    .lg-w-96 {
+        width: auto; /* Set the width for larger screens */
+    }
+    .lg-h-48 {
+        height: auto; /* Set the height for larger screens */
+    }
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: -270px;
+}
+
+.card-cancel-button {
+    color: #e74c3c;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    width: 30px;
+    height: 30px;
+}
+
+.submit-button {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-left: auto;
+}
+
+.custom-card::-webkit-scrollbar {
+    width: 3px; /* Adjust this value to control the scrollbar width */
+}
+
+/* Style the scrollbar track (the area behind the scrollbar) */
+.custom-card::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Change the background color as needed */
+}
+
+/* Style the scrollbar thumb (the draggable part of the scrollbar) */
+.custom-card::-webkit-scrollbar-thumb {
+    background: #888; /* Change the color of the thumb as needed */
+    border-radius: 3px; /* Add border radius to the thumb */
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* Adjust the gap between form items as needed */
+    max-width: 500px; /* Adjust the maximum width of the form container */
+    max-height: 500px;
+    margin: 0 auto;
+}
+
+.form-item {
+    display: flex;
+    align-items: center;
+}
+
+.form-item-field {
+    min-width: 380px;
+}
+
+@media screen and (max-width: 768px) {
+    /* Adjust styles for screens smaller than 768px (for mobile view) */
+    .form-item-field {
+        min-width: 0; /* Changing the min-width value for mobile */
+    }
+}
+
+label {
+    min-width: 120px; /* Adjust the minimum width of labels as needed */
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"],
+textarea,
+input[type="file"] {
+    flex: 1; /* Allow input elements to grow and take up remaining space */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Style the "Category" paragraph differently if needed */
+.form-item p {
+    margin: 0;
+    font-style: italic;
+}
+
+.card-list {
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    min-width: calc(100% - 500px);
+    max-height: 1500px;
+    /*margin-left: 45px;*/
+    /* Add other styling as needed */
+}
+.card-list-default-logo {
+    /*width: 200px;
+    height: 200px;*/
+}
+.card-list-default-userProfile {
+    /*width: 30px;
+    height: 30px;*/
+}
+.card-list-default-location {
+    /*width: 30px;
+    height: 30px;*/
+}
+
+.cotainer {
+    display: grid;
+}
+
+.loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.loader {
+    border: 6px solid #dadada; /* Light grey */
+    border-top: 6px solid #012970; /* Blue */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.scroll-to-top-button {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 99;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+.scroll-to-top-button.show {
+    display: block;
+}
+
+.scroll-to-top-button.hide {
+    display: none;
+}
+
+/* Example CSS styles */
+.pagination-item {
+    /* Define your styles for pagination items here */
+    /* Example styles */
+    display: inline-flex;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.active {
+    /* Define your styles for the active page here */
+    /* Example styles */
+    background-color: #012970; /* This should set the background color to red for the active page */
+    color: white; /* Text color for the active page */
+}
+
+.hoverEffect {
+    transition: transform 0.3s ease-in-out;
+}
+
+.hoverEffect:hover {
+    transform: scale(1.07);
+}
