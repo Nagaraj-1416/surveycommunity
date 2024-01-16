@@ -45,7 +45,7 @@ const CustomizedReactSelect = ({ ...props }) => {
             <Select
                 options={options}
                 isSearchable={false} // Disable the default search input
-                placeholder="" // Set the placeholder to an empty string to disable it
+                placeholder="Click here to search" // Set the placeholder to an empty string to disable it
                 onChange={handleChange}
                 styles={customStyles}
                 components={{

@@ -6,6 +6,7 @@ import { useEffect, useState, useCallback } from "react";
 import { FaRegUserCircle } from "react-icons/fa";
 import { TfiLocationPin } from "react-icons/tfi";
 import { BiMessageError } from "react-icons/bi";
+import { FaArrowLeft } from "react-icons/fa6";
 import axios from "axios";
 import Loader from "@/Components/Loader";
 import { IoArrowUp } from "react-icons/io5";
@@ -122,6 +123,27 @@ const List = ({
         },
         [data?.selectedCategory]
     );
+    const addNewPost = (category) => {
+        //console.log();
+        console.log(category);
+        //setLoading(true);
+        //setViewmode(true);
+        //setViewItem({});
+        //setEditMode(false);
+
+        //setTimeout(() => {
+        //    setLoading(false); // After 5 seconds, hide the loader
+        //}, 2000);
+        ////setData("selectedCategory", selectedValue);
+        //setData((prevData) => ({
+        //    ...prevData,
+        //    selectedCategory: selectedValue,
+        //    pageSize: 5,
+        //    currentPage: 0,
+        //    searchQuery: "",
+        //    pageCount: 0,
+        //}));
+    };
 
     const handleResetCategory = () => {
         setData("selectedCategory", "");
@@ -183,51 +205,68 @@ const List = ({
                         style={{
                             maxHeight: "calc(100vh - 80px)",
                             overflowY: "auto",
-                            display: "block",
+                            alignContent: "center",
                         }}
                     >
                         <div
-                            className="grid grid-cols-1 md:grid-cols-3 gap-4"
+                            className="grid grid-cols-1 md:grid-cols-3"
                             id="targetElementId"
                         >
-                            <div className="p-4">
-                                {/*<img
-                                    src="uploads/save4.jpg"
-                                    alt="Image 1"
-                                    className="w-full h-96"
-                                />*/}
-                            </div>
-                            <div className="md:mr-10 lg:ml-7">
-                                <img
-                                    src="uploads/logo1.png"
-                                    alt="Image 1"
-                                    className="w-full"
-                                    style={{ height: "300px" }}
-                                />
+                            <div className="p-4"></div>
+                            <div>
+                                <div className="flex items-center justify-center">
+                                    <img
+                                        src="uploads/logo1.png"
+                                        alt="Image 1"
+                                    />
+                                </div>
                                 <CustomizedHtmlSelect
                                     options={communityPostCategoryOptions}
                                     placeHolder="Select Category"
                                     onChange={handleCategoryChange}
                                     selectedCategory={data?.selectedCategory}
                                 />
+                                {data?.communityPost?.length > 0 && (
+                                    <div className="flex justify-center gap-36 md:gap-24 mt-8">
+                                        <button
+                                            className="px-4 py-4 text-white rounded-md"
+                                            style={{
+                                                backgroundColor:
+                                                    "rgb(1, 41, 112)",
+                                            }}
+                                        >
+                                            Back to Home
+                                        </button>
+                                        <button
+                                            className="px-4 py-4 text-white rounded-md"
+                                            style={{
+                                                backgroundColor:
+                                                    "rgb(1, 41, 112)",
+                                            }}
+                                            onClick={() =>
+                                                addNewPost(
+                                                    data?.selectedCategory
+                                                )
+                                            }
+                                        >
+                                            Add New Post
+                                        </button>
+                                    </div>
+                                )}
                             </div>
-                            <div className="p-4">
-                                {/*<img
-                                    src="uploads/save5.jpg"
-                                    alt="Image 1"
-                                    className="w-full h-96"
-                                />*/}
-                            </div>
+                            <div className="p-4"></div>
                         </div>
+
                         {data?.communityPost?.length <= 0 && (
                             <div className="grid grid-cols-1 md:grid-cols-4 mt-16 gap-4">
                                 <div
-                                    className="p-4"
+                                    className="p-4 cursor-pointer"
                                     style={{
                                         display: "block",
                                         marginRight: "10%",
                                         marginLeft: "10%",
                                     }}
+                                    onClick={() => handleCategoryChange("2")}
                                 >
                                     <img
                                         src="uploads/homeicon3.png"
@@ -247,12 +286,13 @@ const List = ({
                                     </button>
                                 </div>
                                 <div
-                                    className="p-4"
+                                    className="p-4 cursor-pointer"
                                     style={{
                                         display: "block",
                                         marginRight: "10%",
                                         marginLeft: "10%",
                                     }}
+                                    onClick={() => handleCategoryChange("3")}
                                 >
                                     <img
                                         src="uploads/homeicon2.png"
@@ -272,12 +312,13 @@ const List = ({
                                     </button>
                                 </div>
                                 <div
-                                    className="p-4"
+                                    className="p-4 cursor-pointer"
                                     style={{
                                         display: "block",
                                         marginRight: "10%",
                                         marginLeft: "10%",
                                     }}
+                                    onClick={() => handleCategoryChange("4")}
                                 >
                                     <img
                                         src="uploads/homeicon5.png"
@@ -297,12 +338,13 @@ const List = ({
                                     </button>
                                 </div>
                                 <div
-                                    className="p-4"
+                                    className="p-4 cursor-pointer"
                                     style={{
                                         display: "block",
                                         marginRight: "10%",
                                         marginLeft: "10%",
                                     }}
+                                    onClick={() => handleCategoryChange("1")}
                                 >
                                     <img
                                         src="uploads/homeicon4.png"
@@ -356,28 +398,28 @@ const List = ({
                                             <div className="flex-none">
                                                 {post.category_id == "1" && (
                                                     <img
-                                                        src="uploads/gif-1.gif"
+                                                        src="uploads/homeicon4.png"
                                                         alt="Image 1"
                                                         className="w-full h-full"
                                                     />
                                                 )}
                                                 {post.category_id == "2" && (
                                                     <img
-                                                        src="uploads/Assistant Surveyor.png"
+                                                        src="uploads/homeicon3.png"
                                                         alt="Image 2"
                                                         className="w-full h-full"
                                                     />
                                                 )}
                                                 {post.category_id == "3" && (
                                                     <img
-                                                        src="uploads/Land Surveying.png"
+                                                        src="uploads/homeicon2.png"
                                                         alt="Image 3"
                                                         className="w-full h-full"
                                                     />
                                                 )}
                                                 {post.category_id == "4" && (
                                                     <img
-                                                        src="uploads/Machine Rent.png"
+                                                        src="uploads/homeicon5.png"
                                                         alt="Image 4"
                                                         className="w-full h-full"
                                                     />

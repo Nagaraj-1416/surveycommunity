@@ -83,135 +83,234 @@ const CommunityFormFields = ({
 
     return (
         <div className="form-container">
-            <div className="form-item">
-                <label>Category :</label>
-                <select
-                    disabled
-                    value={data.category || ""}
-                    style={{
-                        border: "none",
-                        background: "none",
-                        padding: 0,
-                        margin: 0,
-                        width: "auto",
-                        fontSize: "inherit",
-                        color: "inherit",
-                        cursor: "pointer",
-                    }}
-                >
-                    {options.map((val) => (
-                        <option key={val.value} value={val.value}>
-                            {val.label}
-                        </option>
-                    ))}
-                </select>
-            </div>
-            <div className="form-item">
-                <label>Title :</label>
-                <div className="block">
-                    <input
-                        type="text"
-                        value={data.title}
-                        className="form-item-field"
-                        onChange={(event) => {
-                            setData({ ...data, title: event.target.value });
-                            setErrors((prevErrors) => ({
-                                ...prevErrors,
-                                title: "",
-                            }));
-                        }}
-                    />
-                    {errors.title && (
-                        <InputError
-                            className="mt-2 flex-none"
-                            message={errors.title}
-                        />
-                    )}
-                </div>
-            </div>
-            <div className="form-item">
-                <label>Location :</label>
-                <div className="block">
-                    <input
-                        type="text"
-                        value={data.location}
-                        className="form-item-field"
-                        onChange={(event) => {
-                            setData({ ...data, location: event.target.value });
-                            setErrors((prevErrors) => ({
-                                ...prevErrors,
-                                location: "",
-                            }));
-                        }}
-                    />
-                    {errors.location && (
-                        <InputError
-                            className="mt-2 flex-none"
-                            message={errors.location}
-                        />
-                    )}
-                </div>
-            </div>
-            <div className="form-item">
-                <label>Mob no :</label>
-                <div className="block">
-                    <input
-                        type="text"
-                        value={data.mobile}
-                        className="form-item-field"
-                        onChange={(event) => {
-                            setData({ ...data, mobile: event.target.value });
-                            setErrors((prevErrors) => ({
-                                ...prevErrors,
-                                mobile: "",
-                            }));
-                        }}
-                    />
-                    {errors.mobile && (
-                        <InputError
-                            className="mt-2 flex-none"
-                            message={errors.mobile}
-                        />
-                    )}
-                </div>
-            </div>
-            <div className="form-item">
-                <label>Description :</label>
-                <div className="block">
-                    <textarea
-                        value={data.description}
-                        className="form-item-field"
-                        style={{ height: "120px" }}
-                        onChange={(event) => {
-                            setData({
-                                ...data,
-                                description: event.target.value,
-                            });
-                            setErrors((prevErrors) => ({
-                                ...prevErrors,
-                                description: "",
-                            }));
-                        }}
-                    />
-                    {errors.description && (
-                        <InputError
-                            className="mt-2 flex-none"
-                            message={errors.description}
-                        />
-                    )}
-                </div>
-            </div>
-            {editMode == false ? (
-                <div className="form-item mt-10 flex justify-end">
-                    <button
-                        className="px-4 py-2 bg-transparent text-blue-500 rounded-md  border border-blue-500  hover:bg-blue-500 hover:text-white hover:border-transparent"
-                        onClick={handleFormSubmit}
-                    >
-                        Submit
-                    </button>
-                </div>
+            {editMode === false ? (
+                <>
+                    <div className="form-item">
+                        <label>Category :</label>
+                        <select
+                            disabled
+                            value={data.category || ""}
+                            style={{
+                                border: "none",
+                                background: "none",
+                                padding: 0,
+                                margin: 0,
+                                width: "auto",
+                                fontSize: "inherit",
+                                color: "inherit",
+                                cursor: "pointer",
+                            }}
+                        >
+                            {options.map((val) => (
+                                <option key={val.value} value={val.value}>
+                                    {val.label}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+                    <div className="form-item">
+                        <label>Title :</label>
+                        <div className="block">
+                            <input
+                                type="text"
+                                value={data.title}
+                                className="form-item-field"
+                                onChange={(event) => {
+                                    setData({
+                                        ...data,
+                                        title: event.target.value,
+                                    });
+                                    setErrors((prevErrors) => ({
+                                        ...prevErrors,
+                                        title: "",
+                                    }));
+                                }}
+                            />
+                            {errors.title && (
+                                <InputError
+                                    className="mt-2 flex-none"
+                                    message={errors.title}
+                                />
+                            )}
+                        </div>
+                    </div>
+                    <div className="form-item">
+                        <label>Location :</label>
+                        <div className="block">
+                            <input
+                                type="text"
+                                value={data.location}
+                                className="form-item-field"
+                                onChange={(event) => {
+                                    setData({
+                                        ...data,
+                                        location: event.target.value,
+                                    });
+                                    setErrors((prevErrors) => ({
+                                        ...prevErrors,
+                                        location: "",
+                                    }));
+                                }}
+                            />
+                            {errors.location && (
+                                <InputError
+                                    className="mt-2 flex-none"
+                                    message={errors.location}
+                                />
+                            )}
+                        </div>
+                    </div>
+                    <div className="form-item">
+                        <label>Mob no :</label>
+                        <div className="block">
+                            <input
+                                type="text"
+                                value={data.mobile}
+                                className="form-item-field"
+                                onChange={(event) => {
+                                    setData({
+                                        ...data,
+                                        mobile: event.target.value,
+                                    });
+                                    setErrors((prevErrors) => ({
+                                        ...prevErrors,
+                                        mobile: "",
+                                    }));
+                                }}
+                            />
+                            {errors.mobile && (
+                                <InputError
+                                    className="mt-2 flex-none"
+                                    message={errors.mobile}
+                                />
+                            )}
+                        </div>
+                    </div>
+                    <div className="form-item">
+                        <label>Description :</label>
+                        <div className="block">
+                            <textarea
+                                value={data.description}
+                                className="form-item-field"
+                                style={{ height: "120px" }}
+                                onChange={(event) => {
+                                    setData({
+                                        ...data,
+                                        description: event.target.value,
+                                    });
+                                    setErrors((prevErrors) => ({
+                                        ...prevErrors,
+                                        description: "",
+                                    }));
+                                }}
+                            />
+                            {errors.description && (
+                                <InputError
+                                    className="mt-2 flex-none"
+                                    message={errors.description}
+                                />
+                            )}
+                        </div>
+                    </div>
+                    <div className="form-item mt-10 flex justify-end">
+                        <button
+                            className="px-4 py-2 bg-transparent text-blue-500 rounded-md  border border-blue-500  hover:bg-blue-500 hover:text-white hover:border-transparent"
+                            onClick={handleFormSubmit}
+                        >
+                            Submit
+                        </button>
+                    </div>
+                </>
             ) : (
-                <></>
+                <>
+                    <div className="form-item mt-5">
+                        <label>Category :</label>
+                        <select
+                            disabled
+                            value={data.category || ""}
+                            style={{
+                                border: "none",
+                                background: "none",
+                                padding: 0,
+                                margin: 0,
+                                width: "auto",
+                                fontSize: "inherit",
+                                color: "inherit",
+                                cursor: "pointer",
+                            }}
+                        >
+                            {options.map((val) => (
+                                <option key={val.value} value={val.value}>
+                                    {val.label}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+                    <div className="form-item mt-5">
+                        <label>Title :</label>
+                        <div className="block">
+                            <p className="form-item-field mt-4 mb-4">
+                                {data.title}
+                            </p>
+                            {errors.title && (
+                                <InputError
+                                    className="mt-2 flex-none"
+                                    message={errors.title}
+                                />
+                            )}
+                        </div>
+                    </div>
+                    <div className="form-item mt-5">
+                        <label>Location :</label>
+                        <div className="block">
+                            <p className="form-item-field mt-4 mb-4">
+                                {data.location}
+                            </p>
+                            {errors.location && (
+                                <InputError
+                                    className="mt-2 flex-none"
+                                    message={errors.location}
+                                />
+                            )}
+                        </div>
+                    </div>
+                    <div className="form-item mt-5">
+                        <label>Mob no :</label>
+                        <div className="block">
+                            <p className="form-item-field mt-4 mb-4">
+                                {data.mobile}
+                            </p>
+                            {errors.mobile && (
+                                <InputError
+                                    className="mt-2 flex-none"
+                                    message={errors.mobile}
+                                />
+                            )}
+                        </div>
+                    </div>
+                    <div className="form-item mt-9">
+                        <label>Description :</label>
+                        <div className="block">
+                            <p className="form-item-field mt-4 mb-4">
+                                {data.description}
+                            </p>
+                            {errors.description && (
+                                <InputError
+                                    className="mt-2 flex-none"
+                                    message={errors.description}
+                                />
+                            )}
+                        </div>
+                    </div>
+                    <div className="form-item mt-10 flex justify-end">
+                        <button
+                            className="px-4 py-2 bg-transparent text-blue-500 rounded-md  border border-blue-500  hover:bg-blue-500 hover:text-white hover:border-transparent"
+                            onClick={handleFormSubmit}
+                        >
+                            Submit
+                        </button>
+                    </div>
+                </>
             )}
         </div>
     );
