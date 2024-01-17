@@ -303,12 +303,12 @@ const CommunityFormFields = ({
                         </div>
                     </div>
                     <div className="form-item mt-10 flex justify-end">
-                        <button
+                        {/*<button
                             className="px-4 py-2 bg-transparent text-blue-500 rounded-md  border border-blue-500  hover:bg-blue-500 hover:text-white hover:border-transparent"
                             onClick={handleFormSubmit}
                         >
                             Submit
-                        </button>
+                        </button>*/}
                     </div>
                 </>
             )}
