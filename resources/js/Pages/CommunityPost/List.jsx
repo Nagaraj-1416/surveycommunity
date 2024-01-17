@@ -123,26 +123,25 @@ const List = ({
         },
         [data?.selectedCategory]
     );
-    const addNewPost = (category) => {
+    const addNewPost = () => {
         //console.log();
-        console.log(category);
-        //setLoading(true);
-        //setViewmode(true);
-        //setViewItem({});
-        //setEditMode(false);
+        setLoading(true);
+        setViewmode(true);
+        setViewItem({});
+        setEditMode(false);
 
-        //setTimeout(() => {
-        //    setLoading(false); // After 5 seconds, hide the loader
-        //}, 2000);
-        ////setData("selectedCategory", selectedValue);
-        //setData((prevData) => ({
-        //    ...prevData,
-        //    selectedCategory: selectedValue,
-        //    pageSize: 5,
-        //    currentPage: 0,
-        //    searchQuery: "",
-        //    pageCount: 0,
-        //}));
+        setTimeout(() => {
+            setLoading(false); // After 5 seconds, hide the loader
+        }, 2000);
+        //setData("selectedCategory", selectedValue);
+        setData((prevData) => ({
+            ...prevData,
+            selectedCategory: categorySelected,
+            pageSize: 5,
+            currentPage: 0,
+            searchQuery: "",
+            pageCount: 0,
+        }));
     };
 
     const handleResetCategory = () => {
@@ -228,26 +227,25 @@ const List = ({
                                 />
                                 {data?.communityPost?.length > 0 && (
                                     <div className="flex justify-center gap-36 md:gap-24 mt-8">
+                                        <a href="/">
+                                            <button
+                                                className="px-4 py-4 text-white rounded-md"
+                                                style={{
+                                                    backgroundColor:
+                                                        "rgb(1, 41, 112)",
+                                                }}
+                                            >
+                                                Back to Home
+                                            </button>
+                                        </a>
+
                                         <button
                                             className="px-4 py-4 text-white rounded-md"
                                             style={{
                                                 backgroundColor:
                                                     "rgb(1, 41, 112)",
                                             }}
-                                        >
-                                            Back to Home
-                                        </button>
-                                        <button
-                                            className="px-4 py-4 text-white rounded-md"
-                                            style={{
-                                                backgroundColor:
-                                                    "rgb(1, 41, 112)",
-                                            }}
-                                            onClick={() =>
-                                                addNewPost(
-                                                    data?.selectedCategory
-                                                )
-                                            }
+                                            onClick={() => addNewPost(data)}
                                         >
                                             Add New Post
                                         </button>
