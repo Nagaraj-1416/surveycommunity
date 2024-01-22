@@ -306,7 +306,7 @@ const List = ({
                                             handleCategoryChange("3")
                                         }
                                     >
-                                        Property Surveyor
+                                        Property Survey
                                     </button>
                                 </div>
                                 <div
