@@ -226,7 +226,7 @@ const List = ({
                                     selectedCategory={data?.selectedCategory}
                                 />
                                 {data?.communityPost?.length > 0 && (
-                                    <div className="flex justify-center gap-36 md:gap-24 mt-8">
+                                    <div className="flex justify-center gap-36 md:gap-24 ml-2 mr-2 mt-8">
                                         <a href="/">
                                             <button
                                                 className="px-4 py-4 text-white rounded-md"
@@ -382,131 +382,114 @@ const List = ({
                             </div>
                         )}
 
-                        <div>
-                            {data?.communityPost.map((post) => (
-                                <div className="card-list" key={post.id}>
-                                    <h1
-                                        className="text-2xl font-semibold font-nunito"
-                                        style={{ color: "#012970" }}
-                                    >
-                                        {post.title}
-                                    </h1>
-                                    <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 mt-5 lg:flex md:block">
-                                        <div className="w-56 h-56 mt-5 lg:ml-6 lg:flex">
-                                            <div className="flex-none">
-                                                {post.category_id == "1" && (
-                                                    <img
-                                                        src="uploads/homeicon4.png"
-                                                        alt="Image 1"
-                                                        className="w-full h-full"
-                                                    />
-                                                )}
-                                                {post.category_id == "2" && (
-                                                    <img
-                                                        src="uploads/homeicon3.png"
-                                                        alt="Image 2"
-                                                        className="w-full h-full"
-                                                    />
-                                                )}
-                                                {post.category_id == "3" && (
-                                                    <img
-                                                        src="uploads/homeicon2.png"
-                                                        alt="Image 3"
-                                                        className="w-full h-full"
-                                                    />
-                                                )}
-                                                {post.category_id == "4" && (
-                                                    <img
-                                                        src="uploads/homeicon5.png"
-                                                        alt="Image 4"
-                                                        className="w-full h-full"
-                                                    />
-                                                )}
-                                            </div>
-                                            <div className="block w-full">
-                                                <div className="flex lg:ml-7 mt-1">
-                                                    <FaRegUserCircle
-                                                        className="card-list-default-userProfile w-10 h-10"
-                                                        style={{
-                                                            color: "#012970",
-                                                        }}
-                                                    />
-                                                    <h1 className="ml-2 text-xl">
-                                                        User
-                                                    </h1>
-                                                </div>
-                                                <div className="flex lg:ml-7 mt-7">
+                        {data.communityPost.map((post) => (
+                            <div className="card-list" key={post.id}>
+                                <h1
+                                    className="text-2xl font-semibold font-nunito ml-7 mt-5"
+                                    style={{ color: "#012970" }}
+                                >
+                                    {post.title}
+                                </h1>
+                                <div className="grid grid-cols-3 mt-5">
+                                    <div className="w-56 h-56 mt-5 lg:ml-6 lg:flex">
+                                        <div className="flex-none">
+                                            {post.category_id == "1" && (
+                                                <img
+                                                    src="uploads/homeicon4.png"
+                                                    alt="Image 1"
+                                                    className="w-full h-full"
+                                                />
+                                            )}
+                                            {post.category_id == "2" && (
+                                                <img
+                                                    src="uploads/homeicon3.png"
+                                                    alt="Image 2"
+                                                    className="w-full h-full"
+                                                />
+                                            )}
+                                            {post.category_id == "3" && (
+                                                <img
+                                                    src="uploads/homeicon2.png"
+                                                    alt="Image 3"
+                                                    className="w-full h-full"
+                                                />
+                                            )}
+                                            {post.category_id == "4" && (
+                                                <img
+                                                    src="uploads/homeicon5.png"
+                                                    alt="Image 4"
+                                                    className="w-full h-full"
+                                                />
+                                            )}
+                                        </div>
+                                        <div>
+                                            <div className="mt-1 lg:flex justify-between">
+                                                <div className="ml-5 flex">
                                                     <div className="w-10 h-10 flex-none">
-                                                        <TfiLocationPin
+                                                        <FaRegUserCircle
+                                                            className="card-list-default-userProfile w-10 h-10"
+                                                            style={{
+                                                                color: "#012970",
+                                                            }}
+                                                        />
+                                                    </div>
+                                                    <div>
+                                                        <p className="ml-2 text-2xl">
+                                                            User
+                                                        </p>
+                                                    </div>
+                                                </div>
+
+                                                <div
+                                                    className="lg:ml-20 lg:mt-0 mt-7 ml-5 md:mt-7 flex"
+                                                    //style={{ width: "120rem" }}
+                                                >
+                                                    <div className="w-10 h-10 flex-none">
+                                                        <BiMessageError
                                                             className="w-full h-full"
                                                             style={{
                                                                 color: "#012970",
                                                             }}
                                                         />
                                                     </div>
-                                                    <div className="flex">
-                                                        <p className="ml-2 text-xl w-full">
-                                                            {post.location}
-                                                        </p>
-                                                    </div>
+                                                    <div></div>
+                                                </div>
+                                            </div>
+
+                                            <div className="mt-7 flex ml-4">
+                                                <div className="w-12 h-12 flex-none">
+                                                    <TfiLocationPin
+                                                        className="w-full h-full"
+                                                        style={{
+                                                            color: "#012970",
+                                                        }}
+                                                    />
+                                                </div>
+                                                <div className="w-64 lg:w-full flex-none">
+                                                    <p className="text-xl mt-2">
+                                                        {post.location}
+                                                    </p>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div
-                                            style={{
-                                                width:
-                                                    window.innerWidth > 768
-                                                        ? "1000px"
-                                                        : "",
-                                                marginLeft:
-                                                    window.innerWidth > 768
-                                                        ? "250px"
-                                                        : "",
-                                                marginTop:
-                                                    window.innerWidth > 768
-                                                        ? "20px"
-                                                        : "160px",
-                                            }}
-                                            className="flex"
-                                        >
-                                            <div className="w-10 h-10 flex-none">
-                                                <BiMessageError
-                                                    className="w-full h-full"
-                                                    style={{ color: "#012970" }}
-                                                />
-                                            </div>
-                                            <div
-                                                style={{ flex: 1 }}
-                                                className="ml-3"
-                                            >
-                                                {post.description}
-                                            </div>
-                                        </div>
-                                        <div
-                                            className="lg:ml-auto md:mt-5"
-                                            style={{
-                                                display: "flex",
-                                                flexDirection: "column",
-                                            }}
-                                        >
+                                        <div className="lg:ml-40 flex-none">
                                             <button
                                                 onClick={() => showPost(post)}
-                                                className="w-40 h-30 text-black text-xl p-2 rounded-md border shadow-xl border-gray-300 transition-colors hover:bg-blue-500 hover:text-white"
+                                                className="w-40 h-30 text-black text-xl p-2 rounded-md border shadow-xl border-gray-300 text-white bg-blue-900 hover:bg-yellow-500 transition duration-300 mr-5"
                                             >
                                                 View
                                             </button>
-                                            <button className="w-40 h-30 mt-4 text-black text-xl p-2 rounded-md border shadow-xl border-gray-300 transition-colors hover:bg-green-500 hover:text-white">
-                                                <a
-                                                    href={`tel:+91 ${post?.mobile}`}
-                                                >
-                                                    Call
-                                                </a>
-                                            </button>
+                                            <a
+                                                href={`tel:+91 ${post?.mobile}`}
+                                                className="flex justify-center items-center w-40 h-30 mt-4 text-black text-xl p-2 rounded-md border shadow-xl border-gray-300 text-white bg-blue-900 hover:bg-yellow-500 transition duration-300"
+                                            >
+                                                Call
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
-                            ))}
-                        </div>
+                            </div>
+                        ))}
                         {data?.communityPost?.length > 0 && (
                             <div className="pagination-container flex justify-center">
                                 <ReactPaginate

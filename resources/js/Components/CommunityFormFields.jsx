@@ -45,8 +45,12 @@ const CommunityFormFields = ({
     const [errors, setErrors] = useState({});
 
     const schema = Yup.object().shape({
-        title: Yup.string().required("Title is required"),
-        location: Yup.string().required("Location is required"),
+        title: Yup.string()
+            .max(100, "Title cannot exceed 100 characters")
+            .required("Title is required"),
+        location: Yup.string()
+            .max(100, "Location cannot exceed 100 characters")
+            .required("Location is required"),
         mobile: Yup.string()
             .matches(/^\d{10}$/, "Mobile number must be 10 digits")
             .required("Mobile number is required"),

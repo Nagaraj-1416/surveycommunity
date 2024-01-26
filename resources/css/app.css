@@ -152,13 +152,19 @@ input[type="file"] {
     background-color: #fff;
     border: 1px solid #e0e0e0;
     border-radius: 8px;
-    padding: 16px;
-    margin: 16px;
+    padding: 30px;
+    margin: 50px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     min-width: calc(100% - 500px);
-    max-height: 1500px;
-    /*margin-left: 45px;*/
-    /* Add other styling as needed */
+    word-wrap: break-word;
+}
+
+/* Media query for mobile devices with max-width 768px */
+@media only screen and (max-width: 768px) {
+    .card-list {
+        margin: 16px; /* Adjust margin for mobile view */
+        height: 700px;
+    }
 }
 .card-list-default-logo {
     /*width: 200px;
