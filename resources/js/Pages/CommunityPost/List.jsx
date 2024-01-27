@@ -298,7 +298,7 @@ const List = ({
                                         className="w-full h-60"
                                     />
                                     <button
-                                        className="w-full rounded-2xl text-white px-4 py-2 hoverEffect font-bold text-xl"
+                                        className="w-full rounded-2xl text-white px-4 py-2 hoverEffect font-bold"
                                         style={{
                                             backgroundColor: "rgb(1, 41, 112)",
                                         }}
@@ -324,7 +324,7 @@ const List = ({
                                         className="w-full h-60"
                                     />
                                     <button
-                                        className="w-full rounded-2xl  text-white px-4 py-2 hoverEffect font-bold text-xl"
+                                        className="w-full rounded-2xl  text-white px-4 py-2 hoverEffect font-bold"
                                         style={{
                                             backgroundColor: "rgb(1, 41, 112)",
                                         }}
@@ -350,7 +350,7 @@ const List = ({
                                         className="w-full h-60"
                                     />
                                     <button
-                                        className="w-full rounded-2xl text-white px-4 py-2 hoverEffect font-bold text-xl"
+                                        className="w-full rounded-2xl text-white px-4 py-2 hoverEffect font-bold"
                                         style={{
                                             backgroundColor: "rgb(1, 41, 112)",
                                         }}
@@ -383,67 +383,85 @@ const List = ({
                         )}
 
                         {data.communityPost.map((post) => (
-                            <div className="card-list" key={post.id}>
-                                <h1
-                                    className="text-2xl font-semibold font-nunito ml-7 mt-5"
-                                    style={{ color: "#012970" }}
-                                >
-                                    {post.title}
-                                </h1>
-                                <div className="grid grid-cols-3 mt-5">
-                                    <div className="w-56 h-56 mt-5 lg:ml-6 lg:flex">
-                                        <div className="flex-none">
-                                            {post.category_id == "1" && (
-                                                <img
-                                                    src="uploads/homeicon4.png"
-                                                    alt="Image 1"
-                                                    className="w-full h-full"
-                                                />
-                                            )}
-                                            {post.category_id == "2" && (
-                                                <img
-                                                    src="uploads/homeicon3.png"
-                                                    alt="Image 2"
-                                                    className="w-full h-full"
-                                                />
-                                            )}
-                                            {post.category_id == "3" && (
-                                                <img
-                                                    src="uploads/homeicon2.png"
-                                                    alt="Image 3"
-                                                    className="w-full h-full"
-                                                />
-                                            )}
-                                            {post.category_id == "4" && (
-                                                <img
-                                                    src="uploads/homeicon5.png"
-                                                    alt="Image 4"
-                                                    className="w-full h-full"
-                                                />
-                                            )}
-                                        </div>
-                                        <div>
-                                            <div className="mt-1 lg:flex justify-between">
-                                                <div className="ml-5 flex">
-                                                    <div className="w-10 h-10 flex-none">
-                                                        <FaRegUserCircle
-                                                            className="card-list-default-userProfile w-10 h-10"
+                            <div>
+                                <div className="card-list" key={post.id}>
+                                    <h1
+                                        className="text-2xl font-semibold font-nunito"
+                                        style={{ color: "#012970" }}
+                                    >
+                                        {post.title}
+                                    </h1>
+                                    <div className="lg:grid grid-cols-3 mt-5">
+                                        <div className="w-56 h-56 mt-5 lg:ml-6 lg:flex">
+                                            <div className="flex-none">
+                                                {post.category_id == "1" && (
+                                                    <img
+                                                        src="uploads/homeicon4.png"
+                                                        alt="Image 1"
+                                                        className="w-full h-full"
+                                                    />
+                                                )}
+                                                {post.category_id == "2" && (
+                                                    <img
+                                                        src="uploads/homeicon3.png"
+                                                        alt="Image 2"
+                                                        className="w-full h-full"
+                                                    />
+                                                )}
+                                                {post.category_id == "3" && (
+                                                    <img
+                                                        src="uploads/homeicon2.png"
+                                                        alt="Image 3"
+                                                        className="w-full h-full"
+                                                    />
+                                                )}
+                                                {post.category_id == "4" && (
+                                                    <img
+                                                        src="uploads/homeicon5.png"
+                                                        alt="Image 4"
+                                                        className="w-full h-full"
+                                                    />
+                                                )}
+                                            </div>
+                                            <div>
+                                                <div className="mt-1 lg:flex justify-between">
+                                                    <div className="ml-5 flex">
+                                                        <div className="w-10 h-10 flex-none">
+                                                            <FaRegUserCircle
+                                                                className="card-list-default-userProfile w-10 h-10"
+                                                                style={{
+                                                                    color: "#012970",
+                                                                }}
+                                                            />
+                                                        </div>
+                                                        <div>
+                                                            <p className="ml-2 text-2xl">
+                                                                User
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div className="mt-10 flex ml-4 mt-11">
+                                                    <div className="w-12 h-12 flex-none">
+                                                        <TfiLocationPin
+                                                            className="w-full h-full"
                                                             style={{
                                                                 color: "#012970",
                                                             }}
                                                         />
                                                     </div>
-                                                    <div>
-                                                        <p className="ml-2 text-2xl">
-                                                            User
+                                                    <div className="w-64 lg:w-full flex-none">
+                                                        <p className="text-xl mt-2">
+                                                            {post.location}
                                                         </p>
                                                     </div>
                                                 </div>
-
-                                                <div
-                                                    className="lg:ml-20 lg:mt-0 mt-7 ml-5 md:mt-7 flex"
-                                                    //style={{ width: "120rem" }}
-                                                >
+                                            </div>
+                                        </div>
+                                        <div className="lg:flex ml-6 mt-48 lg:mt-4 lg:ml-16 w-full ">
+                                            <div className="mt-1 lg:flex justify-between">
+                                                <div className="flex">
                                                     <div className="w-10 h-10 flex-none">
                                                         <BiMessageError
                                                             className="w-full h-full"
@@ -452,36 +470,30 @@ const List = ({
                                                             }}
                                                         />
                                                     </div>
-                                                    <div></div>
-                                                </div>
-                                            </div>
-
-                                            <div className="mt-7 flex ml-4">
-                                                <div className="w-12 h-12 flex-none">
-                                                    <TfiLocationPin
-                                                        className="w-full h-full"
-                                                        style={{
-                                                            color: "#012970",
-                                                        }}
-                                                    />
-                                                </div>
-                                                <div className="w-64 lg:w-full flex-none">
-                                                    <p className="text-xl mt-2">
-                                                        {post.location}
-                                                    </p>
+                                                    <div>
+                                                        <p className="ml-2 text-xl">
+                                                            {post.description
+                                                                .length > 50
+                                                                ? post.description.substring(
+                                                                      0,
+                                                                      50
+                                                                  ) + "..."
+                                                                : post.description}
+                                                        </p>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="lg:ml-40 flex-none">
+                                        <div className="lg:ml-auto flex-none lg:flex flex-col mt-4">
                                             <button
                                                 onClick={() => showPost(post)}
-                                                className="w-40 h-30 text-black text-xl p-2 rounded-md border shadow-xl border-gray-300 text-white bg-blue-900 hover:bg-yellow-500 transition duration-300 mr-5"
+                                                className="w-40 h-30 text-black text-xl p-2 rounded-md border shadow-xl border-gray-300 text-white bg-blue-900 hover:bg-yellow-500 transition duration-300 mb-4"
                                             >
                                                 View
                                             </button>
                                             <a
                                                 href={`tel:+91 ${post?.mobile}`}
-                                                className="flex justify-center items-center w-40 h-30 mt-4 text-black text-xl p-2 rounded-md border shadow-xl border-gray-300 text-white bg-blue-900 hover:bg-yellow-500 transition duration-300"
+                                                className="flex justify-center items-center w-40 h-30 text-black text-xl p-2 rounded-md border shadow-xl border-gray-300 text-white bg-blue-900 hover:bg-yellow-500 transition duration-300"
                                             >
                                                 Call
                                             </a>

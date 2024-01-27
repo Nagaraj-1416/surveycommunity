@@ -46,10 +46,10 @@ const CommunityFormFields = ({
 
     const schema = Yup.object().shape({
         title: Yup.string()
-            .max(100, "Title cannot exceed 100 characters")
+            .max(50, "Title cannot exceed 70 characters")
             .required("Title is required"),
         location: Yup.string()
-            .max(100, "Location cannot exceed 100 characters")
+            .max(50, "Location cannot exceed 50 characters")
             .required("Location is required"),
         mobile: Yup.string()
             .matches(/^\d{10}$/, "Mobile number must be 10 digits")
@@ -252,7 +252,10 @@ const CommunityFormFields = ({
                     </div>
                     <div className="form-item mt-5">
                         <label>Title :</label>
-                        <div className="block">
+                        <div
+                            className="block"
+                            style={{ wordWrap: "break-word", width: "200px" }}
+                        >
                             <p className="form-item-field mt-4 mb-4">
                                 {data.title}
                             </p>
@@ -266,7 +269,10 @@ const CommunityFormFields = ({
                     </div>
                     <div className="form-item mt-5">
                         <label>Location :</label>
-                        <div className="block">
+                        <div
+                            className="block"
+                            style={{ wordWrap: "break-word", width: "200px" }}
+                        >
                             <p className="form-item-field mt-4 mb-4">
                                 {data.location}
                             </p>
