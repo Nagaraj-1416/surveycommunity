@@ -7,6 +7,9 @@ import axios from "axios";
 
 const CommunityFormFields = ({
     selectedCategory,
+    pageSize,
+    currentPage,
+    pageCount,
     resetForm,
     options,
     handleCloseModal,
@@ -16,16 +19,15 @@ const CommunityFormFields = ({
     editMode,
 }) => {
     const { data, setData, post } = useForm({
-        category: selectedCategory,
+        category_id: selectedCategory ? selectedCategory : "",
         id: item ? item?.id : "",
         title: item ? item?.title : "",
         location: item ? item?.location : "",
         mobile: item ? item?.mobile : "",
         description: item ? item?.description : "",
-    });
-
-    useEffect(() => {
-        console.log(item);
+        pageSize: pageSize ? pageSize : "",
+        currentPage: currentPage ? currentPage : "",
+        pageCount: pageCount ? pageCount : "",
     });
 
     useEffect(() => {
@@ -33,7 +35,7 @@ const CommunityFormFields = ({
         if (resetForm === false) {
             setData((prevData) => ({
                 ...prevData,
-                category: selectedCategory,
+                category_id: selectedCategory,
                 title: "",
                 location: "",
                 mobile: "",
@@ -68,7 +70,7 @@ const CommunityFormFields = ({
             console.log("Form Data:", data);
             //post(route('communitypost.store')); // Assuming `route` is properly defined
             axios.post("/communitypost/store", data).then((res) => {
-                console.log(res);
+                console.log("************", res);
                 getdataAfterAddOrView(res);
             });
 
@@ -93,7 +95,7 @@ const CommunityFormFields = ({
                         <label>Category :</label>
                         <select
                             disabled
-                            value={data.category || ""}
+                            value={data.category_id || ""}
                             style={{
                                 border: "none",
                                 background: "none",
@@ -231,7 +233,7 @@ const CommunityFormFields = ({
                         <label>Category :</label>
                         <select
                             disabled
-                            value={data.category || ""}
+                            value={data.category_id || ""}
                             style={{
                                 border: "none",
                                 background: "none",

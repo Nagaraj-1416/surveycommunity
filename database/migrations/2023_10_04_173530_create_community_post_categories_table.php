@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('community_post_categories', function (Blueprint $table) {
             $table->id();
             $table->string('category_name')->nullable();
-            $table->integer('status')->default(0);
+            $table->integer('status')->default(1);
             $table->integer('created_by')->nullable();
             $table->integer('updated_by')->nullable();
             $table->timestamps();

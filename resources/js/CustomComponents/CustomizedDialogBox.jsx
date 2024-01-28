@@ -14,6 +14,9 @@ function CustomizedDialogBox({
     getdataAfterAddOrView,
     setResetFormToDefault,
     editMode,
+    pageSize,
+    currentPage,
+    pageCount,
 }) {
     const [closeModal, setCloseModal] = useState(true);
 
@@ -37,6 +40,9 @@ function CustomizedDialogBox({
             <div className="card-content">
                 <CommunityFormFields
                     selectedCategory={selectedCategory}
+                    pageSize={pageSize}
+                    currentPage={currentPage}
+                    pageCount={pageCount}
                     getdataAfterAddOrView={getdataAfterAddOrView}
                     resetForm={resetForm}
                     options={options}

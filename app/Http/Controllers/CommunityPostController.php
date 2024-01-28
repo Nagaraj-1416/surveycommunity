@@ -32,25 +32,43 @@ class CommunityPostController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->image->extension());
-        $id = $request->id;
-        //$fileName = time().'.'.$request->image->extension();
-        //$request->image->move(public_path('uploads'), $fileName);
-        $communitypost_additional = [
-            'category_id' => $request->input('category'),
-            //'image' => $fileName,
-            'status' => 1
-        ];
+        $id = $request->input('id');
 
-        $data = $request->except(['_token', 'id','image','category']); // Exclude unnecessary data
+        $data = $request->all();
 
-        $data = CommunityPost::updateOrCreate(['id' => $id],$data + $communitypost_additional);
+        $communityPost = CommunityPost::updateOrCreate(['id' => $id], $data);
 
+        $perPage = 2;
+        $currentPage = 1;
+
+        $posts =  CommunityPost:: where('status','!=',2,)->where('category_id',$request->input('category_id'))->orderBy('id', 'desc');
+        //dd($posts->get());
+
+        $totalPosts = $posts->count();
+
+            $communityPosts = $posts
+            ->skip(($currentPage - 1) * 2)
+            ->take(2)
+            ->get();
+
+        
+        //dd( $communityPost);
         return response()->json([
             'communityPostCategoryOptions' => CommunityPostCategory::where('status','!=','2')->select('id as value','category_name as label')->get(),
-            'communityPosts' => CommunityPost:: where('status','!=',2,)->where('category_id',$request->input('category'))->orderBy('id', 'desc')->get(),
-            'selectedCategory'=>$request->input('category')
+            'communityPosts' => $communityPosts,
+            'selectedCategory'=>$request->input('category_id'),
+            'per_page' => $perPage,
+            'current_page' => $currentPage,
+            'page_count' => ceil($totalPosts / $perPage),
         ]);
+
+        
+
+        //return response()->json([
+        //    'communityPostCategoryOptions' => CommunityPostCategory::where('status','!=','2')->select('id as value','category_name as label')->get(),
+        //    'communityPosts' => CommunityPost:: where('status','!=',2,)->where('category_id',$request->input('category'))->orderBy('id', 'desc')->get(),
+        //    'selectedCategory'=>$request->input('category')
+        //]);
         
     }
 

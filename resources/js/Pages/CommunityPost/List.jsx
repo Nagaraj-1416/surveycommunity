@@ -11,20 +11,24 @@ import axios from "axios";
 import Loader from "@/Components/Loader";
 import { IoArrowUp } from "react-icons/io5";
 import ReactPaginate from "react-paginate";
+import useCustomToast from "@/CustomComponents/useCustomToast";
 const List = ({
     auth,
     communityPostCategoryOptions,
     communityPosts,
     selectedCategory,
     viewState,
+    per_page,
+    current_page,
+    page_count,
 }) => {
     const { data, setData, post } = useForm({
         selectedCategory: selectedCategory ? selectedCategory : "",
         communityPost: communityPosts ? communityPosts : [],
-        pageSize: 5,
-        currentPage: 0,
+        pageSize: per_page ? per_page : 5,
+        currentPage: current_page ? current_page : 0,
         searchQuery: "",
-        pageCount: 0,
+        pageCount: page_count ? page_count : 0,
     });
     const [loading, setLoading] = useState(false);
     const [editMode, setEditMode] = useState(false);
@@ -33,6 +37,7 @@ const List = ({
     const [resetForm, setResetForm] = useState(false);
     const [viewItem, setViewItem] = useState({});
     const [categorySelected, setCategorySelected] = useState("");
+    const { showToast } = useCustomToast();
 
     const scrollToElement = () => {
         const element = document.getElementById("targetElementId");
@@ -45,7 +50,7 @@ const List = ({
     }, [viewState]);
 
     useEffect(() => {
-        if (data?.selectedCategory !== "" && viewmode == true) {
+        if (data?.selectedCategory != "" && viewmode == true) {
             axios
                 .post("/", data)
                 .then((res) => {
@@ -54,8 +59,10 @@ const List = ({
                     setData((prevState) => ({
                         ...prevState,
                         communityPost: res.data.communityPosts,
-                        pageCount: res.data.last_page,
+                        pageCount: res.data.page_count,
                         selectedCategory: res.data.selectedCategory,
+                        pageSize: res.data.per_page,
+                        currentPage: res.data.current_page,
                     }));
                     setCategorySelected(res.data.selectedCategory);
                     setCategoryChangeState(true);
@@ -77,10 +84,14 @@ const List = ({
         axios
             .post("/", data)
             .then((res) => {
+                console.log(res);
                 setData((prevState) => ({
                     ...prevState,
                     communityPost: res.data.communityPosts,
-                    pageCount: res.data.last_page,
+                    pageCount: res.data.page_count,
+                    selectedCategory: res.data.selectedCategory,
+                    pageSize: res.data.per_page,
+                    currentPage: res.data.current_page,
                 }));
                 setCategorySelected(res.data.selectedCategory);
                 setCategoryChangeState(false);
@@ -92,10 +103,10 @@ const List = ({
     }, [data.currentPage]);
 
     const handlePageChange = (currentPage) => {
-        console.log(currentPage.selected);
+        const newPage = currentPage.selected + 1; // Since selected is zero-based
         setData((prevState) => ({
             ...prevState,
-            currentPage: currentPage.selected + 1,
+            currentPage: newPage,
             selectedCategory: categorySelected,
         }));
         scrollToElement();
@@ -115,38 +126,25 @@ const List = ({
             setData((prevData) => ({
                 ...prevData,
                 selectedCategory: selectedValue,
-                pageSize: 5,
-                currentPage: 0,
-                searchQuery: "",
-                pageCount: 0,
             }));
         },
         [data?.selectedCategory]
     );
     const addNewPost = () => {
-        //console.log();
-        setLoading(true);
-        setViewmode(true);
-        setViewItem({});
-        setEditMode(false);
-
-        setTimeout(() => {
-            setLoading(false); // After 5 seconds, hide the loader
-        }, 2000);
-        //setData("selectedCategory", selectedValue);
+        console.log(data);
+        console.log(categorySelected);
         setData((prevData) => ({
             ...prevData,
             selectedCategory: categorySelected,
-            pageSize: 5,
-            currentPage: 0,
-            searchQuery: "",
-            pageCount: 0,
         }));
+
+        setCategoryChangeState(true);
     };
 
     const handleResetCategory = () => {
         setData("selectedCategory", "");
         setCategoryChangeState(false);
+        setEditMode(false);
     };
 
     const showPost = (post) => {
@@ -157,12 +155,18 @@ const List = ({
         setEditMode(true);
     };
 
-    const getDataOnAddOrView = (data) => {
-        console.log(data);
+    const getDataOnAddOrView = (res) => {
         setData((prevState) => ({
             ...prevState,
-            communityPost: data.data.communityPosts,
+            communityPost: res.data.communityPosts,
+            pageCount: res.data.page_count,
+            selectedCategory: res.data.selectedCategory,
+            pageSize: res.data.per_page,
+            currentPage: 1,
         }));
+        setCategorySelected(res.data.selectedCategory);
+        setCategoryChangeState(false);
+        showToast("Post added successfully", "success");
     };
     const setResetFormToDefault = () => {
         setResetForm(false);
@@ -187,6 +191,9 @@ const List = ({
                                 <CustomizedDialogBox
                                     selectedCategory={data?.selectedCategory}
                                     handleResetCategory={handleResetCategory}
+                                    pageSize={data?.pageSize}
+                                    currentPage={data?.currentPage}
+                                    pageCount={data?.pageCount}
                                     options={communityPostCategoryOptions}
                                     item={viewItem}
                                     resetForm={resetForm}
@@ -245,7 +252,9 @@ const List = ({
                                                 backgroundColor:
                                                     "rgb(1, 41, 112)",
                                             }}
-                                            onClick={() => addNewPost(data)}
+                                            onClick={() =>
+                                                addNewPost(categorySelected)
+                                            }
                                         >
                                             Add New Post
                                         </button>
@@ -363,24 +372,25 @@ const List = ({
                                 </div>
                             </div>
                         )}
-                        {data?.communityPost?.length > 0 && (
-                            <div className="fixed bottom-10 right-10 z-50">
-                                <div
-                                    className="rounded-full p-2"
-                                    style={{
-                                        backgroundColor: "#F6F6FE",
-                                        border: "2px solid #012970",
-                                    }}
-                                >
-                                    <IoArrowUp
-                                        className="text-4xl cursor-pointer"
-                                        style={{ color: "#012970" }}
-                                        title="Scroll to Top"
-                                        onClick={scrollToElement}
-                                    />
+                        {data?.communityPost?.length > 0 &&
+                            categoryChangeState == false && (
+                                <div className="fixed lg:bottom-10 bottom-13 right-10 z-50">
+                                    <div
+                                        className="rounded-full p-2"
+                                        style={{
+                                            backgroundColor: "#F6F6FE",
+                                            border: "2px solid #012970",
+                                        }}
+                                    >
+                                        <IoArrowUp
+                                            className="text-4xl cursor-pointer"
+                                            style={{ color: "#012970" }}
+                                            title="Scroll to Top"
+                                            onClick={scrollToElement}
+                                        />
+                                    </div>
                                 </div>
-                            </div>
-                        )}
+                            )}
 
                         {data.communityPost.map((post) => (
                             <div>
@@ -473,12 +483,12 @@ const List = ({
                                                     <div>
                                                         <p className="ml-2 text-xl">
                                                             {post.description
-                                                                .length > 50
-                                                                ? post.description.substring(
+                                                                ?.length > 50
+                                                                ? post?.description?.substring(
                                                                       0,
                                                                       50
                                                                   ) + "..."
-                                                                : post.description}
+                                                                : post?.description}
                                                         </p>
                                                     </div>
                                                 </div>
@@ -493,6 +503,7 @@ const List = ({
                                             </button>
                                             <a
                                                 href={`tel:+91 ${post?.mobile}`}
+                                                //target="_blank"
                                                 className="flex justify-center items-center w-40 h-30 text-black text-xl p-2 rounded-md border shadow-xl border-gray-300 text-white bg-blue-900 hover:bg-yellow-500 transition duration-300"
                                             >
                                                 Call
@@ -515,13 +526,14 @@ const List = ({
                                             {">"}
                                         </span>
                                     }
-                                    pageCount={data.pageCount}
+                                    pageCount={data?.pageCount}
                                     onPageChange={handlePageChange}
                                     containerClassName={"flex p-4"}
                                     pageClassName={
                                         "pagination-item inline-flex items-center justify-center w-8 h-8 m-1 border border-gray-500 rounded-full cursor-pointer"
                                     }
                                     activeClassName="active"
+                                    forcePage={data?.currentPage - 1}
                                 />
                             </div>
                         )}

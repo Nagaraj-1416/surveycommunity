@@ -48,7 +48,7 @@ class CommunityPostCategoryController extends Controller
         $totalPosts = $posts->count();
 
             $communityPosts = $posts
-            ->skip(($currentPage - 1) * 5)
+            ->skip(($currentPage - 1) * 2)
             ->take(5)
             ->get();
 
@@ -61,7 +61,7 @@ class CommunityPostCategoryController extends Controller
                 'selectedCategory'=>$request->input('selectedCategory'),
                 'per_page' => $perPage,
                 'current_page' => $currentPage,
-                'last_page' => ceil($totalPosts / $perPage),
+                'page_count' => ceil($totalPosts / $perPage),
             ]);
         } else {
             return Inertia::render('CommunityPost/List',[
@@ -70,7 +70,7 @@ class CommunityPostCategoryController extends Controller
                 'selectedCategory'=>$request->input('selectedCategory'),
                 'per_page' => $perPage,
                 'current_page' => $currentPage,
-                'last_page' => ceil($totalPosts / $perPage),
+                'page_count' => ceil($totalPosts / $perPage),
             ]);
         }
        
