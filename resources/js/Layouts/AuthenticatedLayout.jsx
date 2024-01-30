@@ -27,18 +27,25 @@ export default function Authenticated({ user, header, children }) {
                         </div>
 
                         <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                            <a href="/">
+                            <a
+                                href="https://www.instagram.com/i_surveyor.in/"
+                                target="_blank"
+                            >
                                 <CiInstagram
                                     className="h-9 mt-5 w-auto relative"
                                     style={{ color: "#012970" }}
                                 />
                             </a>
-                            <a href="/">
+                            <a
+                                href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=nagaraj161400@gmail.com"
+                                target="_blank"
+                            >
                                 <CiMail
                                     className="h-9 mt-5 w-auto relative"
                                     style={{ color: "#012970" }}
                                 />
                             </a>
+
                             {/*<NavLink href={route('communitypost')} active={route().current('communitypost')}>
                                     Community Post
                                 </NavLink>*/}
