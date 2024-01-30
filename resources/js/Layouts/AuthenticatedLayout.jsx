@@ -37,7 +37,7 @@ export default function Authenticated({ user, header, children }) {
                                 />
                             </a>
                             <a
-                                href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=nagaraj161400@gmail.com"
+                                href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=careisurveyor@gmail.com"
                                 target="_blank"
                             >
                                 <CiMail
