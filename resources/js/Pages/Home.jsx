@@ -10,7 +10,7 @@ const Home = ({ auth, communityPostCategoryOptions, communityPosts }) => {
     });
 
     useEffect(() => {
-        console.log(data);
+        //console.log(data);
         if (data?.selectedCategory !== "") {
             post(route("communitypost.listbycategory"));
         }

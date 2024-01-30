@@ -31,7 +31,7 @@ const CommunityFormFields = ({
     });
 
     useEffect(() => {
-        console.log(resetForm);
+        //console.log(resetForm);
         if (resetForm === false) {
             setData((prevData) => ({
                 ...prevData,
@@ -48,10 +48,10 @@ const CommunityFormFields = ({
 
     const schema = Yup.object().shape({
         title: Yup.string()
-            .max(50, "Title cannot exceed 70 characters")
+            .max(50, "Title cannot exceed 50 characters")
             .required("Title is required"),
         location: Yup.string()
-            .max(50, "Location cannot exceed 50 characters")
+            .max(30, "Location cannot exceed 50 characters")
             .required("Location is required"),
         mobile: Yup.string()
             .matches(/^\d{10}$/, "Mobile number must be 10 digits")
@@ -67,10 +67,10 @@ const CommunityFormFields = ({
             await schema.validate(data, { abortEarly: false });
             setErrors({}); // Clear previous errors on successful validation
 
-            console.log("Form Data:", data);
+            //console.log("Form Data:", data);
             //post(route('communitypost.store')); // Assuming `route` is properly defined
             axios.post("/communitypost/store", data).then((res) => {
-                console.log("************", res);
+                //console.log("************", res);
                 getdataAfterAddOrView(res);
             });
 

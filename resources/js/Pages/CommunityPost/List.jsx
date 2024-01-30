@@ -54,7 +54,7 @@ const List = ({
             axios
                 .post("/", data)
                 .then((res) => {
-                    console.log(res.data.selectedCategory);
+                    //console.log(res.data.selectedCategory);
                     setLoading(true);
                     setData((prevState) => ({
                         ...prevState,
@@ -84,7 +84,7 @@ const List = ({
         axios
             .post("/", data)
             .then((res) => {
-                console.log(res);
+                //console.log(res);
                 setData((prevState) => ({
                     ...prevState,
                     communityPost: res.data.communityPosts,
@@ -113,7 +113,7 @@ const List = ({
     };
     const handleCategoryChange = useCallback(
         (selectedValue) => {
-            console.log(selectedValue);
+            //console.log(selectedValue);
             setLoading(true);
             setViewmode(true);
             setViewItem({});
@@ -131,8 +131,8 @@ const List = ({
         [data?.selectedCategory]
     );
     const addNewPost = () => {
-        console.log(data);
-        console.log(categorySelected);
+        //console.log(data);
+        //console.log(categorySelected);
         setData((prevData) => ({
             ...prevData,
             selectedCategory: categorySelected,
@@ -374,7 +374,7 @@ const List = ({
                         )}
                         {data?.communityPost?.length > 0 &&
                             categoryChangeState == false && (
-                                <div className="fixed lg:bottom-10 bottom-13 right-10 z-50">
+                                <div className="fixed lg:bottom-10 bottom-10 right-10 z-50">
                                     <div
                                         className="rounded-full p-2"
                                         style={{
@@ -462,7 +462,7 @@ const List = ({
                                                         />
                                                     </div>
                                                     <div className="w-64 lg:w-full flex-none">
-                                                        <p className="text-xl mt-2">
+                                                        <p className="text-xl mt-2 lg:w-full w-44">
                                                             {post.location}
                                                         </p>
                                                     </div>
@@ -481,7 +481,7 @@ const List = ({
                                                         />
                                                     </div>
                                                     <div>
-                                                        <p className="ml-2 text-xl">
+                                                        <p className="ml-2 text-xl lg:w-full w-44">
                                                             {post.description
                                                                 ?.length > 50
                                                                 ? post?.description?.substring(
@@ -503,7 +503,6 @@ const List = ({
                                             </button>
                                             <a
                                                 href={`tel:+91 ${post?.mobile}`}
-                                                //target="_blank"
                                                 className="flex justify-center items-center w-40 h-30 text-black text-xl p-2 rounded-md border shadow-xl border-gray-300 text-white bg-blue-900 hover:bg-yellow-500 transition duration-300"
                                             >
                                                 Call
